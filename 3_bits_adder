@@ -1,0 +1,60 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity adder is
+    Port ( a : in  STD_LOGIC_VECTOR (2 downto 0);
+           b : in  STD_LOGIC_VECTOR (2 downto 0);
+           rin : in  STD_LOGIC;
+           s : out  STD_LOGIC_VECTOR (2 downto 0);
+           rout : out  STD_LOGIC);
+end adder;
+
+architecture Behavioral of adder is
+	component FA
+	 Port ( a : in  std_logic;
+           b : in  std_logic;
+           r0 : in  std_logic;
+           r1 : out  std_logic;
+           s : out  std_logic);
+	
+	end component;
+	
+	signal r1, r2 : std_logic :='0';
+	
+		begin
+		
+		F0 : FA port map (
+		
+		a => a(0),
+		b => b(0),
+		r0 => rin, 
+		s => s(0),
+		r1 => r1);
+		
+		F1 : FA port map (
+		
+		a => a(1),
+		b => b(1),
+		r0 => r1, 
+		s => s(1),
+		r1 => r2);
+		
+		F2 : FA port map (
+		
+		a => a(2),
+		b => b(2),
+		r0 => r2, 
+		s => s(2),
+		r1 => rout);
+
+
+end Behavioral;
