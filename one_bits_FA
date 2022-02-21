@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity FA is
+    Port ( a : in  std_logic;
+           b : in  std_logic;
+           r0 : in  std_logic;
+           r1 : out  std_logic;
+           s : out  std_logic);
+end FA;
+
+architecture Behavioral of FA is
+
+begin
+	r1 <= (a and b) or ((a xor b) and r0);
+	s <= (a xor b) xor r0;
+
+end Behavioral;
+
